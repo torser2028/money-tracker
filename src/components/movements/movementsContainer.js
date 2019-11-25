@@ -73,7 +73,7 @@ class MovementsContainer extends Component {
     return (
       <div>
         <Total total={total} color={color} />
-        <div className="movements-list section">
+        <div className="movements-list collection">
           { listMovements }
         </div>
       </div>

@@ -8,16 +8,21 @@ class Movement extends React.Component {
     }
   }
 
+  getRowColor(type){
+    return type === 'ingreso' ? 'green' : 'red';
+  }
+
   render() {
     const { movement } = this.state;
     const { key } = movement.id;
+    const color = this.getRowColor(movement.movement_type);
     return(
-      <div className={`movement-container col s12 m12 ${movement.description}`} key={ key }>
-        <div className="col s4 m4">{ movement.description }</div>
-        <div className="col s1 m1">{ movement.amount }</div>
-        <div className="col s2 m2">{ movement.date }</div>
-        <div className="col s4 m4">{ movement.source }</div>
-        <div className="col s1 m1">{ movement.category }</div>
+      <div className={`movement-container collection-item col s12 m12`} key={ key }>
+        <span className="col s4 m4 l4 truncate">{ movement.description }</span>
+        <span className={`col s2 m2 l1 ${color}-text`}>{ movement.amount }</span>
+        <span className="col s3 m2 l2">{ movement.date }</span>
+        <span className="col s3 m4 l3 truncate">{ movement.source }</span>
+        <span className="col l2 hide-on-med-and-down truncate">{ movement.category }</span>
       </div>
     )
   }
