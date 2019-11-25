@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Total from './total';
 import Movement from './movement';
 
 class MovementsContainer extends Component {
@@ -6,6 +7,7 @@ class MovementsContainer extends Component {
     super(props);
     this.state = {
       total: 0,
+      color: 'green',
       movements: [
         {
           id: 1,
@@ -29,9 +31,9 @@ class MovementsContainer extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   this.RetrieveMovements();
-  // }
+  componentDidMount() {
+    this.getTotalAndColor(this.state.movements);
+  }
 
   // RetrieveMovements() {
   //   const categoryId = this.props.categoryId;
@@ -47,14 +49,33 @@ class MovementsContainer extends Component {
   //   )
   // }
 
+  getTotalAndColor(movements) {
+    let total = 0;
+    movements.forEach((movement) => {
+      if(movement.movement_type === 'ingreso') {
+        total = total + movement.amount;
+      } else{
+        total = total - movement.amount;
+      }
+    });
+    const color = total >= 0 ? 'green' : 'red';
+    this.setState({
+      total: total,
+      color: color
+    })
+  }
+
   render() {
-    const { movements } = this.state;
+    const { movements, total, color } = this.state;
     const listMovements = movements.map((movement) =>
       <Movement movement={movement} key={movement.id} />
     );
     return (
-      <div className="movements-list section">
-        { listMovements }
+      <div>
+        <Total total={total} color={color} />
+        <div className="movements-list section">
+          { listMovements }
+        </div>
       </div>
     )
   }
