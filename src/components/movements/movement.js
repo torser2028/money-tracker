@@ -12,18 +12,23 @@ class Movement extends React.Component {
     return type === 'ingreso' ? 'green' : 'red';
   }
 
+  getSigendAmount(type, amount){
+    return type === 'ingreso' ? `+ $${amount}` : `- $${amount}`;
+  }
+
   render() {
     const { movement } = this.state;
     const { key } = movement.id;
     const color = this.getRowColor(movement.movement_type);
+    const signedAmount = this.getSigendAmount(movement.movement_type, movement.amount);
     return(
-      <div className={`movement-container collection-item col s12 m12`} key={ key }>
-        <span className="col s4 m4 l4 truncate">{ movement.description }</span>
-        <span className={`col s2 m2 l1 ${color}-text`}>{ movement.amount }</span>
-        <span className="col s3 m2 l2">{ movement.date }</span>
-        <span className="col s3 m4 l3 truncate">{ movement.source }</span>
-        <span className="col l2 hide-on-med-and-down truncate">{ movement.category }</span>
-      </div>
+      <tr key={key}>
+        <td><span>{ movement.description }</span></td>
+        <td><span className={`${color}-text right-align`}>{ signedAmount }</span></td>
+        <td><span>{ movement.date }</span></td>
+        <td className="hide-on-small-only"><span>{ movement.source }</span></td>
+        <td className="hide-on-med-and-down"><span>{ movement.category }</span></td>
+      </tr>
     )
   }
 }

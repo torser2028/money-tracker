@@ -8,6 +8,7 @@ class MovementsContainer extends Component {
     this.state = {
       total: 0,
       color: 'green',
+      signedTotal: '+ $0',
       movements: [
         {
           id: 1,
@@ -59,23 +60,36 @@ class MovementsContainer extends Component {
       }
     });
     const color = total >= 0 ? 'green' : 'red';
+    const signedTotal = total >= 0 ? `+ $${total}` : `- $${total}`;
     this.setState({
       total: total,
-      color: color
+      color: color,
+      signedTotal: signedTotal
     })
   }
 
   render() {
-    const { movements, total, color } = this.state;
+    const { movements, total, color, signedTotal } = this.state;
     const listMovements = movements.map((movement) =>
       <Movement movement={movement} key={movement.id} />
     );
     return (
       <div>
-        <Total total={total} color={color} />
-        <div className="movements-list collection">
-          { listMovements }
-        </div>
+        <Total total={total} color={color} signedTotal={signedTotal} />
+        <table class="highlight">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Valor</th>
+              <th>Fecha</th>
+              <th className="hide-on-small-only">Descripción</th>
+              <th className="hide-on-med-and-down">Categoría</th>
+            </tr>
+          </thead>
+            <tbody>
+              { listMovements }
+            </tbody>
+        </table>
       </div>
     )
   }
