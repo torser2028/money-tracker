@@ -30,7 +30,7 @@ class CategoryForm extends Component {
             <input type="text" id="color" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Crear</button>
+            <button className="btn green lighten-1 z-depth-0">Crear</button>
           </div>
         </form>
       </div>
