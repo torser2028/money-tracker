@@ -9,26 +9,7 @@ class MovementsContainer extends Component {
       total: 0,
       color: 'green',
       signedTotal: '+ $0',
-      movements: [
-        {
-          id: 1,
-          movement_type: 'ingreso',
-          category: 'honorarios',
-          source: 'Cuenta de ahorros Colpatria',
-          amount: 3894150,
-          date: '19/11/2019',
-          description: 'Pago PanOpen'
-        },
-        {
-          id: 2,
-          movement_type: 'egreso',
-          category: 'salud',
-          source: 'Cuenta de ahorros Colpatria',
-          amount: 635000,
-          date: '20/11/2019',
-          description: 'Coomeva, Préstamo, Prepagada'
-        }
-      ]
+      movements: props.movements
     }
   }
 
@@ -76,7 +57,7 @@ class MovementsContainer extends Component {
     return (
       <div>
         <Total total={total} color={color} signedTotal={signedTotal} />
-        <table class="highlight">
+        <table className="highlight">
           <thead>
             <tr>
               <th>Item</th>

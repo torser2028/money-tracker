@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import MovementsContainer from '../movements/movementsContainer';
+import { connect } from 'react-redux';
 
 class Dashboard extends Component {
   render() {
+    const { movements } = this.props;
     return (
       <div className="dashboard container">
         <div className="row">
           <div className="col s12 m12">
-            <MovementsContainer />
+            <MovementsContainer movements={movements} />
           </div>
         </div>
       </div>
@@ -15,4 +17,9 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    movements: state.movements.movements
+  }
+}
+export default connect(mapStateToProps)(Dashboard);
