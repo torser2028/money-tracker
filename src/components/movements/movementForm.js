@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createMovement } from '../../store/actions/movementActions';
 
 class MovementForm extends Component {
   state = {
@@ -6,7 +8,7 @@ class MovementForm extends Component {
     description: '',
     amount: '',
     date: '',
-    source: '',
+    account: '',
     category: ''
   }
 
@@ -18,7 +20,7 @@ class MovementForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.createMovement(this.state);
   }
 
   render() {
@@ -39,8 +41,8 @@ class MovementForm extends Component {
             <input type="text" id="date" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <label htmlFor="source">Recurso</label>
-            <input type="text" id="source" onChange={this.handleChange} />
+            <label htmlFor="account">Recurso</label>
+            <input type="text" id="account" onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <label htmlFor="category">Categoría</label>
@@ -55,4 +57,10 @@ class MovementForm extends Component {
   }
 }
 
-export default MovementForm
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createMovement: (movement) => dispatch(createMovement(movement))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(MovementForm);

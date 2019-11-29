@@ -7,7 +7,7 @@ import SignIn from './components/auth/signIn';
 import SignUp from './components/auth/signUp';
 import MovementForm from './components/movements/movementForm';
 import CategoryForm from './components/categories/categoryForm';
-import SourceForm from './components/accounts/sourceForm';
+import AccountForm from './components/accounts/accountForm';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <Route path="/sign-in" component={SignIn} />
           <Route path="/sign-up" component={SignUp} />
           <Route path="/categories/create" component={CategoryForm} />
-          <Route path="/sources/create" component={SourceForm} />
+          <Route path="/accounts/create" component={AccountForm} />
         </Switch>
       </div>
     </BrowserRouter>

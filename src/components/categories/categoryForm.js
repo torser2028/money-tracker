@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createCategory } from '../../store/actions/categoryActions';
 
 class CategoryForm extends Component {
   state = {
@@ -14,6 +16,7 @@ class CategoryForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.props.createCategory(this.state);
   }
 
   render() {
@@ -38,4 +41,10 @@ class CategoryForm extends Component {
   }
 }
 
-export default CategoryForm
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createCategory: (movement) => dispatch(createCategory(movement))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CategoryForm);

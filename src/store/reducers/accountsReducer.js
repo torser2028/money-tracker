@@ -8,6 +8,10 @@ const initState = {
 };
 
 const accountsReducer = (state = initState, action) => {
+  switch(action.type) {
+    case 'CREATE_ACCOUNT':
+      console.log('create account: ', action.account);
+  }
   return state;
 }
 

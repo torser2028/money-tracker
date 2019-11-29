@@ -10,6 +10,10 @@ const initState = {
 };
 
 const categoriesReducer = (state = initState, action) => {
+  switch(action.type) {
+    case 'CREATE_CATEGORY':
+      console.log('create category: ', action.category);
+  }
   return state;
 }
 

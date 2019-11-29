@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createAccount } from '../../store/actions/accountActions';
 
-class SourceForm extends Component {
+class AccountForm extends Component {
   state = {
     name: ''
   }
@@ -13,6 +15,7 @@ class SourceForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.props.createAccount(this.state);
   }
 
   render() {
@@ -33,4 +36,11 @@ class SourceForm extends Component {
   }
 }
 
-export default SourceForm
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createAccount: (movement) => dispatch(createAccount(movement))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AccountForm);
+

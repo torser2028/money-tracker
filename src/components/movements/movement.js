@@ -26,7 +26,7 @@ class Movement extends React.Component {
         <td><span>{ movement.description }</span></td>
         <td><span className={`${color}-text right-align`}>{ signedAmount }</span></td>
         <td><span>{ movement.date }</span></td>
-        <td className="hide-on-small-only"><span>{ movement.source }</span></td>
+        <td className="hide-on-small-only"><span>{ movement.account }</span></td>
         <td className="hide-on-med-and-down"><span>{ movement.category }</span></td>
       </tr>
     )
